@@ -10,8 +10,8 @@ It handles different kinds of terminals (VT100, ANSI, ADM-31, KayPro, C128) for 
  - **xterm.mod** - Implementation.
  - **main.mod** - Demo module that uses some procedure IMPORTed from **xterm**.
 - **binary** - Compiled .COM executable files for CP/M-80
- - **xterm.sym** - **xterm** library itself (symbols).
- - **xterm.mcd** - **xterm** library itself (object code).
+ - **xterm.sym** - *XTterm* library itself (symbols).
+ - **xterm.mcd** - *XTterm* library itself (object code).
  - **main.mcd** - Demo module - compiled
  - **main.com** - Demo module - linked executable
 
