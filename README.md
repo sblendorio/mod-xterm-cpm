@@ -1,11 +1,11 @@
 # XTerm for CP/M
 
 ## Description
-**XTerm** stands for "Cross-Terminal". It's a Modula-2 library for CP/M.
-It handles different kinds of terminals (VT100, ANSI, ADM-31, KayPro, C128) for easy cursor positioning, colors (when available), and screen handling. **Xterm** was entirely written using a *Commodore 128*.
+**XTerm** stands for "Cross-Terminal". It's a **Modula-2** library for CP/M.
+It handles different kinds of terminals (VT100, ANSI, ADM-31, KayPro, C128) for easy cursor positioning, colors (when available), and screen handling. **XTerm** was entirely written using a *Commodore 128*.
 
 ##Contents of package
-- **source** - Source code in Turbo Modula-2 (Borland)
+- **source** - Source code in **Turbo Modula-2** (Borland)
  - **xterm.def** - Definition: it contains symbols which can be IMPORTed.
  - **xterm.mod** - Implementation.
  - **main.mod** - Demo module that uses some procedure IMPORTed from **xterm**.
