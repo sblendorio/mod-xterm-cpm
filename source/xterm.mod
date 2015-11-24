@@ -221,8 +221,8 @@ END HideCursor;
 PROCEDURE CursorXY(x,y:CARDINAL);
 BEGIN
   CASE Term OF
-    VT100: WRITE(33C,'[*',y:0,';',x:0,'H') |
-    ANSI: WRITE(33C,'[*',y:0,';',x:0,'H') |
+    VT100: WRITE(33C,'[',y:0,';',x:0,'H') |
+    ANSI: WRITE(33C,'[',y:0,';',x:0,'H') |
     KAYPRO: WRITE(33C,'=',CHAR(y+31),CHAR(x+31)) |
     ADM31: WRITE(33C,'=',CHAR(y+31),CHAR(x+31)) |
     C128: WRITE(33C,'=',CHAR(y+31),CHAR(x+31))
