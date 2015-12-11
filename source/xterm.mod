@@ -1,6 +1,10 @@
 IMPLEMENTATION MODULE XTerm;
 FROM Strings IMPORT CAPS,Length;
 FROM ComLine IMPORT commandLine;
+FROM SYSTEM IMPORT BDOS,ADR,IORESULT;
+FROM MathLib IMPORT Randomize;
+FROM Terminal IMPORT ReadChar;
+FROM Convert IMPORT StrToCard;
 VAR Term:TERMTYPE;
 
 PROCEDURE String2TermType(name:ARRAY OF CHAR):TERMTYPE;
@@ -18,11 +22,11 @@ END String2TermType;
 PROCEDURE PrintTermType(t:TERMTYPE);
 BEGIN
   CASE t OF
-    VT100: WRITE('VT100') |
-    ANSI: WRITE('ANSI') |
-    KAYPRO: WRITE('KayPro') |
-    ADM31: WRITE('ADM31') |
-    C128: WRITE('C128') |
+    VT100:  WRITE('VT100  (B&W)') |
+    ANSI:   WRITE('ANSI   (Color)') |
+    KAYPRO: WRITE('KayPro (B&W)') |
+    ADM31:  WRITE('ADM31  (B&W)') |
+    C128:   WRITE('C128   (Color)') |
     INVALID: WRITE('INVALID')
   END;
 END PrintTermType;
@@ -60,10 +64,21 @@ BEGIN
   END;
 END InitWithNoColors;
 
+PROCEDURE CursorXYVT100(x,y:CARDINAL);
+BEGIN
+  WRITE(33C,'[',y:0,';',x:0,'H')
+END CursorXYVT100;
+
+PROCEDURE CursorXYKAYPRO(x,y:CARDINAL);
+BEGIN
+  WRITE(33C,'=',CHAR(y+31),CHAR(x+31))
+END CursorXYKAYPRO;
+
 PROCEDURE InitVT100base();
 VAR i:ESCAPE;
     j:CARDINAL;
 BEGIN
+  CursorXY:=CursorXYVT100;
   SEQ[REVERSE]:='~[7m';
   SEQ[PLAIN]:='~[27m';
   SEQ[BLINK]:='~[5m';
@@ -106,7 +121,7 @@ BEGIN
   SEQ[BROWN]:='~[33m~[2m';
   SEQ[LIGHTRED]:='~[31m~[2m';
   SEQ[DARKGREY]:='~[37m~[2m';
-  SEQ[MIDGREY]:='~[36m~[2m';
+  SEQ[DARKCYAN]:='~[36m~[2m';
   SEQ[LIGHTGREEN]:='~[32m~[22m';
   SEQ[LIGHTBLUE]:='~[34m~[22m';
   SEQ[LIGHTGREY]:='~[37m~[2m';
@@ -117,6 +132,7 @@ PROCEDURE InitKayPro();
 VAR i:ESCAPE;
     j:CARDINAL;
 BEGIN
+  CursorXY:=CursorXYKAYPRO;
   InitWithNoColors();
   SEQ[REVERSE]:='~B0';
   SEQ[PLAIN]:='~C0';
@@ -142,6 +158,7 @@ PROCEDURE InitC128(withColors:BOOLEAN);
 VAR i:ESCAPE;
     j:CARDINAL;
 BEGIN
+  CursorXY:=CursorXYKAYPRO;
   SEQ[REVERSE]:='~G4';
   SEQ[PLAIN]:='~G0';
   SEQ[BLINK]:='~G2';
@@ -191,14 +208,20 @@ VAR s:ARRAY [0..79] OF CHAR;
     c:CARDINAL;
 BEGIN
   READ(commandLine,s);
-  t:=String2TermType(s);
+  IF Length(s)=1 THEN
+    t:=TERMTYPE(INTEGER(s[0])-48)
+  ELSE
+    t:=String2TermType(s)
+  END;
   IF t=INVALID THEN
-    WRITELN('Select a terminal type:');
+    WRITELN('Select a terminal type (or specify it on command line):');
     WRITELN();
     PrintTermTypeList();
     WRITELN();
-    WRITE('>'); READ(c);
-    t:=TERMTYPE(c);
+    REPEAT
+      WRITE('>'); READ(c);
+      t:=TERMTYPE(c);
+    UNTIL t>INVALID;
   END;
   SetTermType(t);
 END AskTermType;
@@ -218,16 +241,6 @@ BEGIN
   WRITE(SEQ[CURSOROFF]);
 END HideCursor;
 
-PROCEDURE CursorXY(x,y:CARDINAL);
-BEGIN
-  CASE Term OF
-    VT100: WRITE(33C,'[',y:0,';',x:0,'H') |
-    ANSI: WRITE(33C,'[',y:0,';',x:0,'H') |
-    KAYPRO: WRITE(33C,'=',CHAR(y+31),CHAR(x+31)) |
-    ADM31: WRITE(33C,'=',CHAR(y+31),CHAR(x+31)) |
-    C128: WRITE(33C,'=',CHAR(y+31),CHAR(x+31))
-  END;
-END CursorXY;
 
 PROCEDURE ClrScr();
 BEGIN
@@ -280,6 +293,41 @@ PROCEDURE Center(y:CARDINAL;s:ARRAY OF CHAR);
 BEGIN
   CursorXY((80-Length(s)) DIV 2+1,y);WRITE(s);
 END Center;
+
+PROCEDURE RandomizeShuffle();
+CONST GetDT=105; (* BDOS Function *)
+VAR dat:ARRAY[0..1] OF CARDINAL;
+BEGIN
+  BDOS(GetDT,ADR(dat));
+  Randomize(IORESULT+dat[0]+dat[1]);
+END RandomizeShuffle;
+
+PROCEDURE InputCardinal
+          (x,y:CARDINAL;VAR num:CARDINAL;l:CARDINAL):BOOLEAN;
+VAR i:CARDINAL;
+    ch:CHAR;
+    s:ARRAY[0..30] OF CHAR;
+BEGIN
+  i:=0;
+  REPEAT
+    CursorXY(x+i,y);
+    ReadChar(ch);
+    IF (ch>='0') AND (ch<='9') AND (i<l) THEN
+      s[i]:=ch;
+      s[i+1]:=0C;
+      INC(i);
+      WRITE(ch);
+    ELSIF ((ch=10C) OR (ch=177C)) AND (i>0) THEN
+      s[i]:=0C;
+      DEC(i);
+      CursorXY(x+i,y); WRITE(' ');
+    ELSIF (ch=33C) OR (ch=3C) THEN
+      s[0]:=0C;
+    END;
+  UNTIL (ch=33C) OR (ch=3C) OR ((ch=15C) AND (i>0));
+  IF (ch=33C) OR (ch=3C) THEN RETURN FALSE END;
+  RETURN StrToCard(s,num);
+END InputCardinal;
 
 BEGIN
   Term:=KAYPRO;
