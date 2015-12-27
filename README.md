@@ -1,3 +1,6 @@
+### News
+Have a look to (Gorilla-CPM)[https://github.com/sblendorio/gorilla-cpm], a Modula-2 project using XTerm
+
 # XTerm for CP/M
 
 ## Description
