@@ -7,9 +7,9 @@ It handles different kinds of terminals (VT100, ANSI, ADM-31, KayPro, C128) for 
 ##Contents of package
 - **source** - Source code in **Turbo Modula-2** (Borland)
  - [**xterm.def**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.def) - Definition: it contains symbols which can be IMPORTed.
- - **xterm.mod** - Implementation.
+ - [**xterm.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.mod) - Implementation.
  - [**main.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/main.mod) - Demo module that uses some procedure IMPORTed from **xterm**.
-- **binary** - Compiled .COM executable files for CP/M-80
+- **binary** - Compiled files for CP/M-80
  - **xterm.sym** - *XTterm* library itself (symbols).
  - **xterm.mcd** - *XTterm* library itself (object code).
  - **main.mcd** - Demo module - compiled
