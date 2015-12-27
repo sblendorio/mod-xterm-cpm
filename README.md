@@ -1,5 +1,5 @@
 ### News
-Have a look to (Gorilla-CPM)[https://github.com/sblendorio/gorilla-cpm], a Modula-2 project using XTerm
+Have a look to [**Gorilla-CPM**](https://github.com/sblendorio/gorilla-cpm), a Modula-2 game for **CP/M** using XTerm
 
 # XTerm for CP/M
 
