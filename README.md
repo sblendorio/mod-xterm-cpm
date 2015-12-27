@@ -10,8 +10,8 @@ It handles different kinds of terminals (VT100, ANSI, ADM-31, KayPro, C128) for 
  - [**xterm.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.mod) - Implementation.
  - [**main.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/main.mod) - Demo module that uses some procedure IMPORTed from **xterm**.
 - **binary** - Compiled files for CP/M-80
- - **xterm.sym** - *XTterm* library itself (symbols).
- - **xterm.mcd** - *XTterm* library itself (object code).
+ - **xterm.sym** - *XTerm* library itself (symbols).
+ - **xterm.mcd** - *XTerm* library itself (object code).
  - **main.mcd** - Demo module - compiled
  - **main.com** - Demo module - linked executable
 
