@@ -5,7 +5,7 @@ Have a look to [**Gorilla-CPM**](https://github.com/sblendorio/gorilla-cpm), a M
 
 ## Description
 **XTerm** stands for "Cross-Terminal". It's a **Modula-2** library for CP/M.
-It handles different kinds of terminals (VT100, ANSI, ADM-31, KayPro, C128) for easy cursor positioning, colors (when available), and screen handling. **XTerm** has been entirely written using a *Commodore 128*.
+It handles different kinds of terminals (VT100, ANSI, ADM-31, KayPro, C128, Memotech monochrome) for easy cursor positioning, colors (when available), and screen handling. **XTerm** has been entirely written using a *Commodore 128*.
 
 ##Contents of package
 - **source** - Source code in **Turbo Modula-2** (Borland)
