@@ -15,6 +15,7 @@ It handles different kinds of terminals for easy cursor positioning, colors (whe
 * **ADM-31** (monochrome)
 * **C128** (colors)
 * **Memotech** (monochrome)
+* Amstrad **CPC** 6128 (monochrome)
 
 ##Contents of package
 - **source** - Source code in **Turbo Modula-2** (Borland)
