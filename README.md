@@ -17,7 +17,7 @@ It handles different kinds of terminals for easy cursor positioning, colors (whe
 * **Memotech** (monochrome)
 * Amstrad **CPC** 6128 / Zenith Z19 (monochrome)
 
-##Contents of package
+## Contents of package
 - **source** - Source code in **Turbo Modula-2** (Borland)
  - [**xterm.def**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.def) - Definition: it contains symbols which can be IMPORTed.
  - [**xterm.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.mod) - Implementation.
@@ -28,10 +28,10 @@ It handles different kinds of terminals for easy cursor positioning, colors (whe
  - **main.mcd** - Demo module - compiled
  - **main.com** - Demo module - linked executable
 
-##Demo screenshots
-#On an ANSI (VT100 with colors) terminal
+## Demo screenshots
+# On an ANSI (VT100 with colors) terminal
 ![ANSI](http://www.sblendorio.eu/images/xterm-ansi.png)
-#On a KayPro compatible terminal (no colors)
+# On a KayPro compatible terminal (no colors)
 ![KayPro](http://www.sblendorio.eu/images/xterm-kaypro.png)
-#On a Commodore 128 (ADM-31 with colours)
+# On a Commodore 128 (ADM-31 with colours)
 ![ANSI](http://www.sblendorio.eu/images/xterm-c128.png)
