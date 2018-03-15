@@ -19,14 +19,14 @@ It handles different kinds of terminals for easy cursor positioning, colors (whe
 
 ## Contents of package
 - **source** - Source code in **Turbo Modula-2** (Borland)
- - [**xterm.def**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.def) - Definition: it contains symbols which can be IMPORTed.
- - [**xterm.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.mod) - Implementation.
- - [**main.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/main.mod) - Demo module that uses some procedure IMPORTed from **xterm**.
+  - [**xterm.def**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.def) - Definition: it contains symbols which can be IMPORTed.
+  - [**xterm.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/xterm.mod) - Implementation.
+  - [**main.mod**](https://github.com/sblendorio/mod-xterm-cpm/blob/master/source/main.mod) - Demo module that uses some procedure IMPORTed from **xterm**.
 - **binary** - Compiled files for CP/M-80
- - **xterm.sym** - *XTerm* library itself (symbols).
- - **xterm.mcd** - *XTerm* library itself (object code).
- - **main.mcd** - Demo module - compiled
- - **main.com** - Demo module - linked executable
+  - **xterm.sym** - *XTerm* library itself (symbols).
+  - **xterm.mcd** - *XTerm* library itself (object code).
+  - **main.mcd** - Demo module - compiled
+  - **main.com** - Demo module - linked executable
 
 # Demo screenshots
 ## On an ANSI (VT100 with colors) terminal
